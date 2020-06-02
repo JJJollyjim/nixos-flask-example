@@ -5,6 +5,8 @@ let
 in {
   options.services.paste = {
     enable = lib.mkEnableOption "paste";
+
+    # TODO more options
   };
 
   config = lib.mkIf cfg.enable {
@@ -12,6 +14,8 @@ in {
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         ExecStart = "${appEnv}/bin/waitress-serve paste:app";
+
+        # TODO harden :P
       };
     };
   };
